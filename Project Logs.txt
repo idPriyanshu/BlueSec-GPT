@@ -1,0 +1,60 @@
+Setups:
+created a new user "secuser" with password "12345678" in laptop B with splunk active
+installed and started ssh server on it...also set it for automatic on startup
+connected to laptop b via ssh tunnel from laptop a through command
+
+ssh -L 8000:127.0.0.1:8000 -L 8089:127.0.0.1:8089 secuser@192.168.1.8
+
+access laptop b splunk interface from laptop a web interface on
+
+http://localhost:8000
+
+restart
+
+downloading splunk enterprise free trial on laptop a
+universal forwarder on laptop b
+splunk administrator username splunk password 12345678
+splunk universal forwarder username splunkuf password 12345678
+
+for splunk uf deployment server and indexer same as laptop a ip and port of ds is 8089 and indexer is 9997
+set receiver port via splunk forwarding and receiving port of 9997
+also allow inbound connection on 9997 tcp port on laptop a for receiving logs
+
+for splunk uf, put in "C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf"
+[WinEventLog://Security]
+disabled = 0
+host = laptop-1
+
+[WinEventLog://System]
+disabled = 0
+host = laptop-1
+
+[WinEventLog://Application]
+disabled = 0
+host = laptop-1
+
+also add splunk and splunk uf bin to path for using splunk as universal variable in cmd
+
+for cmd and powershell logs
+
+Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging" -Name "EnableScriptBlockLogging" -Value 1 -Type DWord
+
+Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\PowerShell\ModuleLogging" -Name "EnableModuleLogging" -Value 1 -Type DWord
+
+New-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit" -Name "ProcessCreationIncludeCmdLine_Enabled" -Value 1 -PropertyType DWord -Force
+
+put in "C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf"
+
+[WinEventLog://Microsoft-Windows-PowerShell/Operational]
+disabled = 0
+host = laptop-1
+
+install djnago and djangorestframework on python
+
+python manage.py runserver 8001
+
+using react for frontend
+
+installed node js
+
+npm start

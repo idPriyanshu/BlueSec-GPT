@@ -1,0 +1,19 @@
+# Core Django + REST Framework
+Django>=4.2
+djangorestframework>=3.14
+
+# LLM API requests and data handling
+requests>=2.31
+openai>=1.30  # Only if you plan to support OpenAI APIs optionally
+
+# For local model loading (optional)
+transformers>=4.41
+torch>=2.2
+bitsandbytes>=0.43
+
+# For JSON handling and utilities
+python-dotenv>=1.0
+tqdm>=4.66
+
+# CORS (if frontend and backend are separate)
+django-cors-headers>=4.3
